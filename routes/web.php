@@ -20,3 +20,5 @@ Route::get('/' ,[
     'uses' => 'IndexController@index',
     'as' => 'index'
 ]);
+
+Route::get('facade1', ['uses' => 'IndexController@facade1']);

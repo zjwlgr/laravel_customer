@@ -19,6 +19,7 @@ class IndexController extends Controller {
 
     public function facade1(){
         $users = DB::table('function')->select('id', 'fname')->get();
+        
         dd($users);
     }
 

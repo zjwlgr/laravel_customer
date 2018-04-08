@@ -273,6 +273,19 @@ $(function(){
             $('#origin').text(data.origin);
             $('#position').text(data.position);
             $('#currently').text(data.currently);
+            $('#industry').text(data.industry == null ? '' : data.industry);
+            $('#development').text(data.development == null ? '' : data.development);
+            $('#opportunity').text(data.opportunity == null ? '' : data.opportunity);
+            $('#potential').text(data.potential == null ? '' : data.potential);
+            $('#contribution').text(data.contribution == null ? '' : data.contribution);
+            $('#tiveness').text(data.tiveness == null ? '' : data.tiveness);
+            $('#divided').text(data.divided);
+            $('#dividedd').text(data.dividedd);
+            $('#recommend').text(data.recommend);
+            $('#describe').text(data.describe);
+            $('#note').text(data.note);
+            $('#create_at').text(data.created_at);
+            $('#admin_id').text(data.admin_id);
 
 
             $('#myModal').modal('show')

@@ -13,13 +13,14 @@
                     <th width="5%">#</th>
                     <th width="8%">姓名</th>
                     <th width="9%">手机号</th>
-                    <th width="7%">性别</th>
-                    <th width="7%">出生年</th>
+                    <th width="5%">性别</th>
+                    <th width="6%">出生年</th>
                     <th width="5%">年龄</th>
-                    <th width="7%">婚姻</th>
-                    <th width="7%">生育</th>
-                    <th width="13%">录入时间</th>
-                    <th width="11%">操作</th>
+                    <th width="6%">婚姻</th>
+                    <th width="6%">生育</th>
+                    <th width="12%">录入时间</th>
+                    <th width="6%">录入人</th>
+                    <th width="10%">操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -35,6 +36,7 @@
                         <td>{{ $customer_ar['matrimony'][$manager->matrimony] }}</td>
                         <td>{{ $customer_ar['bear'][$manager->bear] }}</td>
                         <td>{{ date('Y-m-d H:i:s', $manager->created_at) }}</td>
+                        <td>{{ $manager->admin_name }}</td>
                         <td>
                             <a href="{{ $manager->id }}" class="detail_model">详情</a> |
                             <a href="{{ url('upInfo-'.$manager->id.'.jay') }}">编辑</a> |
@@ -156,6 +158,14 @@
                         <tr>
                             <td style="text-align: right;">备注：</td>
                             <td id="note"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">录入时间：</td>
+                            <td id="create_at"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">录入人：</td>
+                            <td id="admin_id"></td>
                         </tr>
                         </tbody>
                     </table>

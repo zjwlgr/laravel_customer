@@ -59,6 +59,10 @@ class InfomationController extends CommonController
 
     public function listInfo(){
         $infometions = $this->model->paginate(15);
+        foreach ($infometions as $key => $val){
+            $admin = DB::table('manager')->select('uname')->find($val->admin_id);
+            $infometions[$key]->admin_name = $admin->uname;
+        }
         $customer_ar = config('myconfig.customer');
         $title = '客户信息管理';
         return view('Customer.listInfo', [
@@ -116,9 +120,18 @@ class InfomationController extends CommonController
                 $arrays->$key = '';
             }
         }
+        $admin = DB::table('manager')->select('uname')->find($arrays->admin_id);
         $arrays->sex = $customer_ar['sex'][$arrays->sex];
         $arrays->matrimony = $customer_ar['matrimony'][$arrays->matrimony];
         $arrays->bear = $customer_ar['bear'][$arrays->bear];
+        $arrays->industry = $customer_ar['industry'][$arrays->industry];
+        $arrays->development = $customer_ar['development'][$arrays->development];
+        $arrays->opportunity = $customer_ar['opportunity'][$arrays->opportunity];
+        $arrays->potential = $customer_ar['potential'][$arrays->potential];
+        $arrays->contribution = $customer_ar['contribution'][$arrays->contribution];
+        $arrays->tiveness = $customer_ar['tiveness'][$arrays->tiveness];
+        $arrays->created_at = date('Y-m-d H:i:s', $arrays->created_at);
+        $arrays->admin_id = $admin->uname;
         return response()->json($arrays);
     }
 

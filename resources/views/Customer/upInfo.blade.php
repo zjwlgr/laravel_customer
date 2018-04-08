@@ -5,38 +5,24 @@
 
         <div class="bs-center">
 
-            @if(session()->has('error'))
-                <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <strong>{{ session()->get('error') }}！</strong>
-                </div>
-            @endif
-
-            @if(count($errors))
-            <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <p>{{ $errors->first() }}</p>
-            </div>
-            @endif
-
             <form id="form1_infomation" name="form1_infomation" method="post" action="" class="form-horizontal">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" value="{{ old('infomation')['name'] }}" name="infomation[name]" id="name" placeholder="姓名">
+                        <input type="text" class="form-control" value="{{ $one->name }}" name="infomation[name]" id="name" placeholder="姓名">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="phone" class="col-sm-2 control-label">手机号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[phone]" id="phone" placeholder="手机号">
+                        <input type="text" class="form-control" value="{{ $one->phone }}" name="infomation[phone]" id="phone" readonly placeholder="手机号">
                     </div>
-                    <div class="col-sm-3" style="padding-top: 7px;">
+                    {{--<div class="col-sm-3" style="padding-top: 7px;">
                         <span class="glyphicon glyphicon-ok" style="color: #009900; display: none"></span>
                         <span class="glyphicon glyphicon-remove" style="color: #FF0000; display: none"></span>
-                    </div>
+                    </div>--}}
                 </div>
 
                 <div class="form-group">
@@ -44,7 +30,9 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择性别-</span>
+                                <span id="text">
+                                    {{ $customer_ar['sex'][$one->sex] }}
+                                </span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -52,7 +40,7 @@
                                 <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[sex]" id="sex" value="0" />
+                            <input type="hidden" name="infomation[sex]" id="sex" value="{{ $one->sex }}" />
                         </div>
                     </div>
                 </div>
@@ -60,14 +48,14 @@
                 <div class="form-group">
                     <label for="imyear" class="col-sm-2 control-label">出生年</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" readonly name="infomation[imyear]" id="imyear" placeholder="出生年">
+                        <input type="text" class="form-control" value="{{ $one->imyear }}" readonly name="infomation[imyear]" id="imyear" placeholder="出生年">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="age" class="col-sm-2 control-label">年龄</label>
                     <div class="col-sm-5">
-                        <input type="text" readonly class="form-control" name="infomation[age]" id="age" placeholder="年龄：根据选择的出生年自动计算">
+                        <input type="text" readonly class="form-control" value="{{ $one->age }}" name="infomation[age]" id="age" placeholder="年龄：根据选择的出生年自动计算">
                     </div>
                 </div>
 
@@ -76,7 +64,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择婚姻-</span>
+                                <span id="text">{{ empty($one->matrimony) ? '未选择' : $customer_ar['matrimony'][$one->matrimony] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -84,7 +72,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[matrimony]" id="matrimony" value="0" />
+                            <input type="hidden" name="infomation[matrimony]" id="matrimony" value="{{ $one->matrimony }}" />
                         </div>
                     </div>
                 </div>
@@ -94,7 +82,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择生育-</span>
+                                <span id="text">{{ empty($one->bear) ? '未选择' : $customer_ar['bear'][$one->bear] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -102,7 +90,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[bear]" id="bear" value="0" />
+                            <input type="hidden" name="infomation[bear]" id="bear" value="{{ $one->bear }}" />
                         </div>
                     </div>
                 </div>
@@ -110,35 +98,35 @@
                 <div class="form-group">
                     <label for="qq" class="col-sm-2 control-label">QQ号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[qq]" id="qq" placeholder="QQ号">
+                        <input type="text" class="form-control" value="{{ $one->qq }}" name="infomation[qq]" id="qq" placeholder="QQ号">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="weixin" class="col-sm-2 control-label">微信号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[weixin]" id="weixin" placeholder="微信号">
+                        <input type="text" class="form-control" value="{{ $one->weixin }}" name="infomation[weixin]" id="weixin" placeholder="微信号">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="origin" class="col-sm-2 control-label">籍贯</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[origin]" id="origin" placeholder="籍贯">
+                        <input type="text" class="form-control" value="{{ $one->origin }}" name="infomation[origin]" id="origin" placeholder="籍贯">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="position" class="col-sm-2 control-label">职位</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[position]" id="position" placeholder="职位">
+                        <input type="text" class="form-control" value="{{ $one->position }}" name="infomation[position]" id="position" placeholder="职位">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="currently" class="col-sm-2 control-label">目前任职公司</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[currently]" id="currently" placeholder="目前任职公司">
+                        <input type="text" class="form-control" value="{{ $one->currently }}" name="infomation[currently]" id="currently" placeholder="目前任职公司">
                     </div>
                 </div>
 
@@ -147,7 +135,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择行业-</span>
+                                <span id="text">{{ empty($one->industry) ? '未选择' : $customer_ar['industry'][$one->industry] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -155,7 +143,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[industry]" id="industry" value="0" />
+                            <input type="hidden" name="infomation[industry]" id="industry" value="{{ $one->industry }}" />
                         </div>
                     </div>
                 </div>
@@ -165,7 +153,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择发展意愿-</span>
+                                <span id="text">{{ empty($one->development) ? '未选择' : $customer_ar['development'][$one->development] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -173,7 +161,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[development]" id="development" value="0" />
+                            <input type="hidden" name="infomation[development]" id="development" value="{{ $one->development }}" />
                         </div>
                     </div>
                 </div>
@@ -181,7 +169,7 @@
                 <div class="form-group">
                     <label for="divided" class="col-sm-2 control-label">最近一次见面</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" readonly name="infomation[divided]" id="divided" placeholder="最近一次见面时间">
+                        <input type="text" class="form-control" value="{{ $one->divided }}" readonly name="infomation[divided]" id="divided" placeholder="最近一次见面时间">
                     </div>
                 </div>
 
@@ -190,7 +178,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择商机类型-</span>
+                                <span id="text">{{ empty($one->opportunity) ? '未选择' : $customer_ar['opportunity'][$one->opportunity] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -198,7 +186,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[opportunity]" id="opportunity" value="0" />
+                            <input type="hidden" name="infomation[opportunity]" id="opportunity" value="{{ $one->opportunity }}" />
                         </div>
                     </div>
                 </div>
@@ -206,7 +194,7 @@
                 <div class="form-group">
                     <label for="dividedd" class="col-sm-2 control-label">成单分成比例</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[dividedd]" id="dividedd" placeholder="成单分成比例">
+                        <input type="text" class="form-control" value="{{ $one->dividedd }}" name="infomation[dividedd]" id="dividedd" placeholder="成单分成比例">
                     </div>
                 </div>
 
@@ -215,7 +203,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择潜在商机-</span>
+                                <span id="text">{{ empty($one->potential) ? '未选择' : $customer_ar['potential'][$one->potential] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -223,7 +211,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[potential]" id="potential" value="0" />
+                            <input type="hidden" name="infomation[potential]" id="potential" value="{{ $one->potential }}" />
                         </div>
                     </div>
                 </div>
@@ -231,7 +219,7 @@
                 <div class="form-group">
                     <label for="recommend" class="col-sm-2 control-label">推荐职位</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" name="infomation[recommend]" id="recommend" placeholder="推荐职位">
+                        <input type="text" class="form-control" value="{{ $one->recommend }}" name="infomation[recommend]" id="recommend" placeholder="推荐职位">
                     </div>
                 </div>
 
@@ -240,7 +228,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择商机贡献-</span>
+                                <span id="text">{{ empty($one->contribution) ? '未选择' : $customer_ar['contribution'][$one->contribution] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -248,7 +236,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[contribution]" id="contribution" value="0" />
+                            <input type="hidden" name="infomation[contribution]" id="contribution" value="{{ $one->contribution }}" />
                         </div>
                     </div>
                 </div>
@@ -256,7 +244,7 @@
                 <div class="form-group">
                     <label for="describe" class="col-sm-2 control-label">商机结果描述</label>
                     <div class="col-sm-5">
-                        <textarea class="form-control" id="describe" name="infomation[describe]" rows="3" placeholder="商机结果描述"></textarea>
+                        <textarea class="form-control" id="describe" name="infomation[describe]" rows="3" placeholder="商机结果描述">{{ $one->describe }}</textarea>
                     </div>
                 </div>
 
@@ -265,7 +253,7 @@
                     <div class="col-sm-5">
                         <div class="dropdown" style="float: left;">
                             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                                <span id="text">-选择有效性-</span>
+                                <span id="text">{{ empty($one->tiveness) ? '未选择' : $customer_ar['tiveness'][$one->tiveness] }}</span>
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
@@ -273,7 +261,7 @@
                                     <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
                                 @endforeach
                             </ul>
-                            <input type="hidden" name="infomation[tiveness]" id="tiveness" value="0" />
+                            <input type="hidden" name="infomation[tiveness]" id="tiveness" value="{{ $one->tiveness }}" />
                         </div>
                     </div>
                 </div>
@@ -281,7 +269,7 @@
                 <div class="form-group">
                     <label for="describe" class="col-sm-2 control-label">备注</label>
                     <div class="col-sm-5">
-                        <textarea class="form-control" id="note" name="infomation[note]" rows="3" placeholder="备注"></textarea>
+                        <textarea class="form-control" id="note" name="infomation[note]" rows="3" placeholder="备注">{{ $one->note }}</textarea>
                     </div>
                 </div>
 

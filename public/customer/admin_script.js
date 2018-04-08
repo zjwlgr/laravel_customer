@@ -233,6 +233,54 @@ $(function(){
         }
     });
 
+    $('#phone').bind('blur', function () {
+        var phone = $(this).val();
+        if(phone != '') {
+            if (!phone.match(/^1(3|4|5|6|7|8|9)\d{9}$/)) {
+                art.dialog({
+                    lock: true, opacity: 0.5, content: "请输入正确的手机号！", icon: 'warning', ok: function () {
+                        $('#phone').focus();
+                    }
+                });
+                return false;
+            } else {
+                $.get('/ajaxPhone.jay', {phone: phone}, function (data) {
+                    if (data.code == 0) {
+                        $('.glyphicon-ok').show().text(data.msg);
+                        $('.glyphicon-remove').hide();
+                    } else if (data.code == 1) {
+                        $('.glyphicon-remove').show().text(data.msg);
+                        $('.glyphicon-ok').hide();
+                    }
+                });
+            }
+        }
+    });
+
+    $('.detail_model').bind('click', function () {
+        var id = $(this).attr('href');
+
+        $.get('/ajaxDetail.jay',{id:id},function (data) {
+            $('#name').text(data.name);
+            $('#phone').text(data.phone);
+            $('#sex').text(data.sex);
+            $('#imyear').text(data.imyear);
+            $('#age').text(data.age);
+            $('#matrimony').text(data.matrimony == null ? '' : data.matrimony);
+            $('#bear').text(data.bear == null ? '' : data.bear);
+            $('#qq').text(data.qq);
+            $('#weixin').text(data.weixin);
+            $('#origin').text(data.origin);
+            $('#position').text(data.position);
+            $('#currently').text(data.currently);
+
+
+            $('#myModal').modal('show')
+        });
+
+        return false;
+    });
+
     if($('#model_success').length > 0){
         setTimeout(function () {
             $('#model_success').children('button').click();

@@ -142,14 +142,14 @@
                 <thead>
                 <tr class="active">
                     <th width="5%">#</th>
-                    <th width="8%">姓名</th>
+                    <th width="6%">姓名</th>
                     <th width="9%">手机号</th>
                     <th width="5%">性别</th>
                     <th width="6%">出生年</th>
                     <th width="5%">年龄</th>
                     <th width="6%">婚姻</th>
                     <th width="6%">生育</th>
-                    <th width="12%">录入时间</th>
+                    <th width="14%">录入时间</th>
                     <th width="6%">录入人</th>
                     <th width="10%">操作</th>
                 </tr>

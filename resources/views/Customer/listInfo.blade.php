@@ -21,7 +21,11 @@
                                 <input type="text" name="phone" style="border-color: #999;" class="form-control input-sm" id="phonen" value="{{ $one['phone'] }}" placeholder="手机号">
                             </div>
                             <div class="form-group">
-                                <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="infomation[imyear]" value="{{ $one['imyear'] }}" id="imyearn" placeholder="出生年">
+                                <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="imyear" value="{{ $one['imyear'] }}" id="imyearn" placeholder="出生年">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" style=" border-color: #999;" class="form-control input-sm" name="recommend" value="{{ $one['recommend'] }}" id="recommendn" placeholder="推荐职位">
                             </div>
 
                             <div class="form-group dropdown">

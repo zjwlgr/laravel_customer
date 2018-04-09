@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label for="phone" class="col-sm-2 control-label">手机号</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" value="{{ $one->phone }}" name="infomation[phone]" id="phone" readonly placeholder="手机号">
+                        <input type="text" class="form-control" value="{{ $one->phone }}" name="infomation[phone]" id="phone" placeholder="手机号">
                     </div>
                     {{--<div class="col-sm-3" style="padding-top: 7px;">
                         <span class="glyphicon glyphicon-ok" style="color: #009900; display: none"></span>

@@ -70,6 +70,9 @@ class InfomationController extends CommonController
         if($posts['imyear'] !== null){
             $where[] = ['imyear', 'like', '%'.$posts['imyear'].'%'];
         }
+        if($posts['recommend'] !== null){
+            $where[] = ['recommend', 'like', '%'.$posts['recommend'].'%'];
+        }
         if($posts['sex'] !== null){
             $where[] = ['sex', '=', $posts['sex']];
         }

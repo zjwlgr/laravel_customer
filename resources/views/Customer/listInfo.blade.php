@@ -3,9 +3,134 @@
 
     <div class="bs-example">
 
-        <div class="bs-center">
+        <div class="bs-center" style="padding-top: 0px;">
 
             @include('common/message')
+
+            <table class="table table-margin" style="margin-bottom: 0px;">
+
+                <thead>
+                <tr>
+                    <td width="5%" class="text-muted">筛选</td>
+                    <td width="95%">
+                        <form class="form-inline" style="position: relative; bottom: 5px;">
+                            <div class="form-group">
+                                <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="name" value="{{ $one['name'] }}" id="namen" placeholder="姓名">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="phone" style="border-color: #999;" class="form-control input-sm" id="phonen" value="{{ $one['phone'] }}" placeholder="手机号">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="infomation[imyear]" value="{{ $one['imyear'] }}" id="imyearn" placeholder="出生年">
+                            </div>
+
+                            <div class="form-group dropdown">
+                                <select id="sexn" name="sex" class="search-select">
+                                    <option value="">-性别-</option>
+                                    @foreach($customer_ar['sex'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['sex']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown">
+                                <select id="matrimonyn" name="matrimony" class="search-select">
+                                    <option value="">-婚姻-</option>
+                                    @foreach($customer_ar['matrimony'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['matrimony']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown">
+                                <select id="bearn" name="bear" class="search-select">
+                                    <option value="">-生育-</option>
+                                    @foreach($customer_ar['bear'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['bear']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown">
+                                <select id="industryn" name="industry" class="search-select">
+                                    <option value="">-行业-</option>
+                                    @foreach($customer_ar['industry'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['industry']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown">
+                                <select id="developmentn" name="development" class="search-select">
+                                    <option value="">-发展意愿-</option>
+                                    @foreach($customer_ar['development'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['development']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown">
+                                <select id="opportunityn" name="opportunity" class="search-select">
+                                    <option value="">-商机类型-</option>
+                                    @foreach($customer_ar['opportunity'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['opportunity']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="potentialn" name="potential" class="search-select">
+                                    <option value="">-潜在商机-</option>
+                                    @foreach($customer_ar['potential'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['potential']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="contributionn" name="contribution" class="search-select">
+                                    <option value="">-商机贡献-</option>
+                                    @foreach($customer_ar['contribution'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['contribution']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="tivenessn" name="tiveness" class="search-select">
+                                    <option value="">-有效性-</option>
+                                    @foreach($customer_ar['tiveness'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['tiveness']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="admin_idn" name="admin_id" class="search-select">
+                                    <option value="">-录入人-</option>
+                                    @foreach($admins as $key => $val)
+                                        <option value="{{ $val->id }}" @if($val->id == $one['admin_id']) selected @endif>{{ $val->uname }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="sort" name="sort" class="search-select">
+                                    <option value="">-排序-</option>
+                                    <option value="1" @if(1 == $one['sort']) selected @endif>按录入时间升序</option>
+                                    <option value="2" @if(2 == $one['sort']) selected @endif>按录入时间将序</option>
+                                    <option value="3" @if(3 == $one['sort']) selected @endif>按最近一次见面时间升序</option>
+                                    <option value="4" @if(4 == $one['sort']) selected @endif>按最近一次见面时间将序</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 10px;">点我搜索</button>
+                        </form>
+                    </td>
+                </tr>
+                </thead>
+
+            </table>
 
             <table class="table table-bordered table-hover">
                 <thead>
@@ -48,7 +173,22 @@
                 </tbody>
             </table>
 
-            {{ $infometions->links() }}
+            {{ $infometions->appends([
+            'name' => $one['name'],
+            'phone' => $one['phone'],
+            'imyear' => $one['imyear'],
+            'sex' => $one['sex'],
+            'matrimony' => $one['matrimony'],
+            'bear' => $one['bear'],
+            'industry' => $one['industry'],
+            'development' => $one['development'],
+            'opportunity' => $one['opportunity'],
+            'potential' => $one['potential'],
+            'contribution' => $one['contribution'],
+            'tiveness' => $one['tiveness'],
+            'admin_id' => $one['admin_id'],
+            'sort' => $one['sort']
+            ])->links() }}
 
         </div>
 

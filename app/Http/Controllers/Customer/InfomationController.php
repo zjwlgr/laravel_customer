@@ -57,18 +57,86 @@ class InfomationController extends CommonController
         }
     }
 
-    public function listInfo(){
-        $infometions = $this->model->paginate(15);
+    public function listInfo(Request $request){
+        $posts = $request->all();
+
+        $where = [];
+        if($posts['name'] !== null){
+            $where[] = ['name', 'like', '%'.$posts['name'].'%'];
+        }
+        if($posts['phone'] !== null){
+            $where[] = ['phone', '=', $posts['phone']];
+        }
+        if($posts['imyear'] !== null){
+            $where[] = ['imyear', '=', $posts['imyear']];
+        }
+        if($posts['sex'] !== null){
+            $where[] = ['sex', '=', $posts['sex']];
+        }
+        if($posts['matrimony'] !== null){
+            $where[] = ['matrimony', '=', $posts['matrimony']];
+        }
+        if($posts['bear'] !== null){
+            $where[] = ['bear', '=', $posts['bear']];
+        }
+        if($posts['industry'] !== null){
+            $where[] = ['industry', '=', $posts['industry']];
+        }
+        if($posts['development'] !== null){
+            $where[] = ['development', '=', $posts['development']];
+        }
+        if($posts['opportunity'] !== null){
+            $where[] = ['opportunity', '=', $posts['opportunity']];
+        }
+        if($posts['potential'] !== null){
+            $where[] = ['potential', '=', $posts['potential']];
+        }
+        if($posts['contribution'] !== null){
+            $where[] = ['contribution', '=', $posts['contribution']];
+        }
+        if($posts['tiveness'] !== null){
+            $where[] = ['tiveness', '=', $posts['tiveness']];
+        }
+        if($posts['admin_id'] !== null){
+            $where[] = ['admin_id', '=', $posts['admin_id']];
+        }
+
+        $field = 'id'; $sort = 'asc';
+        if($posts['sort'] !== null){
+            if($posts['sort'] == 1){//按录入时间升序
+                $field = 'id'; $sort = 'asc';
+            }
+            if($posts['sort'] == 2){//按录入时间将序
+                $field = 'id'; $sort = 'desc';
+            }
+            if($posts['sort'] == 3){//按最近一次见面时间升序
+                $field = 'divided'; $sort = 'asc';
+            }
+            if($posts['sort'] == 4){//按最近一次见面时间将序
+                $field = 'divided'; $sort = 'desc';
+            }
+        }
+
+        //$infometions = $this->model->where($where)->orderBy($field, $sort)->toSql();
+        //dd($infometions);
+
+        $infometions = $this->model->where($where)->orderBy($field, $sort)->paginate(20);
+
         foreach ($infometions as $key => $val){
             $admin = DB::table('manager')->select('uname')->find($val->admin_id);
             $infometions[$key]->admin_name = $admin->uname;
         }
         $customer_ar = config('myconfig.customer');
+
+        $admins = DB::table('manager')->select('id','uname')->get();
+
         $title = '客户信息管理';
         return view('Customer.listInfo', [
             'title' => $title,
             'infometions' => $infometions,
-            'customer_ar' => $customer_ar
+            'customer_ar' => $customer_ar,
+            'one' => $posts,
+            'admins' => $admins
         ]);
     }
 

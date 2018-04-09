@@ -141,34 +141,34 @@
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr class="active">
-                    <th width="5%">#</th>
-                    <th width="6%">姓名</th>
-                    <th width="9%">手机号</th>
-                    <th width="5%">性别</th>
-                    <th width="6%">出生年</th>
-                    <th width="5%">年龄</th>
-                    <th width="6%">婚姻</th>
-                    <th width="6%">生育</th>
-                    <th width="14%">录入时间</th>
-                    <th width="6%">录入人</th>
-                    <th width="10%">操作</th>
+                    <th width="5%" style="text-align: center;">序号</th>
+                    <th width="7%" style="text-align: center;">姓名</th>
+                    <th width="9%" style="text-align: center;">手机号</th>
+                    <th width="5%" style="text-align: center;">性别</th>
+                    <th width="6%" style="text-align: center;">出生年</th>
+                    <th width="5%" style="text-align: center;">年龄</th>
+                    <th width="6%" style="text-align: center;">婚姻</th>
+                    <th width="6%" style="text-align: center;">生育</th>
+                    <th width="14%" style="text-align: center;">录入时间</th>
+                    <th width="6%" style="text-align: center;">录入人</th>
+                    <th width="10%" style="text-align: center;">操作</th>
                 </tr>
                 </thead>
                 <tbody>
 
                 @foreach($infometions as $manager)
                     <tr>
-                        <th scope="row">{{ $manager->id }}</th>
-                        <td>{{ $manager->name }}</td>
-                        <td>{{ $manager->phone }}</td>
-                        <td>{{ $customer_ar['sex'][$manager->sex] }}</td>
-                        <td>{{ $manager->imyear }}</td>
-                        <td>{{ $manager->age }}</td>
-                        <td>{{ $customer_ar['matrimony'][$manager->matrimony] }}</td>
-                        <td>{{ $customer_ar['bear'][$manager->bear] }}</td>
-                        <td>{{ date('Y-m-d H:i:s', $manager->created_at) }}</td>
-                        <td>{{ $manager->admin_name }}</td>
-                        <td>
+                        <th style="text-align: center;">{{ $manager->id }}</th>
+                        <td style="text-align: center;">{{ $manager->name }}</td>
+                        <td style="text-align: center;">{{ $manager->phone }}</td>
+                        <td style="text-align: center;">{{ $customer_ar['sex'][$manager->sex] }}</td>
+                        <td style="text-align: center;">{{ $manager->imyear }}</td>
+                        <td style="text-align: center;">{{ $manager->age }}</td>
+                        <td style="text-align: center;">{{ $customer_ar['matrimony'][$manager->matrimony] }}</td>
+                        <td style="text-align: center;">{{ $customer_ar['bear'][$manager->bear] }}</td>
+                        <td style="text-align: center;">{{ date('Y-m-d H:i:s', $manager->created_at) }}</td>
+                        <td style="text-align: center;">{{ $manager->admin_name }}</td>
+                        <td style="text-align: center;">
                             <a href="{{ $manager->id }}" class="detail_model">详情</a> |
                             <a href="{{ url('upInfo-'.$manager->id.'.jay') }}">编辑</a>
                             @if(session()->get('adminData')['group_id'] == 1)|

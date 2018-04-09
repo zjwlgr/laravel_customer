@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/cycy', function () {
-    return 'sdsdf';
-});
 
 Route::get('/', function () {
     return redirect(route('index'));

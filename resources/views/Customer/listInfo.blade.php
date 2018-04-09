@@ -170,8 +170,10 @@
                         <td>{{ $manager->admin_name }}</td>
                         <td>
                             <a href="{{ $manager->id }}" class="detail_model">详情</a> |
-                            <a href="{{ url('upInfo-'.$manager->id.'.jay') }}">编辑</a> |
+                            <a href="{{ url('upInfo-'.$manager->id.'.jay') }}">编辑</a>
+                            @if(session()->get('adminData')['group_id'] == 1)|
                             <a href="{{ url('delInfo-'.$manager->id.'.jay') }}" class="delete" >删除</a>
+                                @endif
                         </td>
                     </tr>
                 @endforeach

@@ -97,9 +97,15 @@ class InfomationController extends CommonController
         if($posts['tiveness'] !== null){
             $where[] = ['tiveness', '=', $posts['tiveness']];
         }
-        if($posts['admin_id'] !== null){
-            $where[] = ['admin_id', '=', $posts['admin_id']];
+
+        if($this->adminData['group_id'] == 1) {
+            if ($posts['admin_id'] !== null) {
+                $where[] = ['admin_id', '=', $posts['admin_id']];
+            }
+        }else{
+            $where[] = ['admin_id', '=', $this->adminData['id']];
         }
+
 
         $field = 'id'; $sort = 'asc';
         if($posts['sort'] !== null){

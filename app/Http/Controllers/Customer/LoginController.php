@@ -32,14 +32,14 @@ class LoginController extends Controller{
 
             $Manager_M = new Manager();
             $update = $Manager_M->find($first->id);
-            $update->login_ip = $request->getClientIps();
+            $update->login_ip = $request->getClientIp();
             $update->login_time = time();
-
-            session(['key' => 'vvvvv']);
+            $update->save();
 
             $request->session()->put('adminData', [
                 'id' => $first->id,
                 'uname' => $first->uname,
+                'group_id' => $first->group_id,
                 'group_name' => $Manager_M->userGroup($first->group_id)
             ]);
 

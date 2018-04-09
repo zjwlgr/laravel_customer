@@ -7,6 +7,21 @@ use Illuminate\Http\Request;
 
 class ManagerController extends CommonController
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware(function ($request, $next) {
+
+            $adminData = $this->adminData;
+            if ($adminData['group_id'] != 1) {
+                return redirect('login.jay');
+            }
+
+            return $next($request);
+        });
+    }
+
     public function addManager(Request $request){
         if($request->isMethod('POST')){
             $Manager = new Manager();

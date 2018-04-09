@@ -105,6 +105,7 @@
                                 </select>
                             </div>
 
+                            @if(session()->get('adminData')['group_id'] == 1)
                             <div class="form-group dropdown" style="margin-top: 10px;">
                                 <select id="admin_idn" name="admin_id" class="search-select">
                                     <option value="">-录入人-</option>
@@ -113,6 +114,7 @@
                                     @endforeach
                                 </select>
                             </div>
+                            @endif
 
                             <div class="form-group dropdown" style="margin-top: 10px;">
                                 <select id="sort" name="sort" class="search-select">

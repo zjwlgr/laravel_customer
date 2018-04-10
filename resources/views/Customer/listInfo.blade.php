@@ -73,7 +73,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group dropdown">
+                            <div class="form-group dropdown" style="margin-top: 10px;">
                                 <select id="opportunityn" name="opportunity" class="search-select">
                                     <option value="">-商机类型-</option>
                                     @foreach($customer_ar['opportunity'] as $key => $val)
@@ -216,104 +216,91 @@
                     <table class="table table-bordered table-hover">
                         <tbody>
                         <tr>
-                            <td style="text-align: right;" width="20%">姓名：</td>
-                            <td id="name"></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right;">手机号：</td>
+                            <td style="text-align: right;" width="15%">姓名：</td>
+                            <td id="name" width="30%"></td>
+
+                            <td style="text-align: right;" width="15%">手机号：</td>
                             <td id="phone"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">性别：</td>
                             <td id="sex"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">出生年：</td>
                             <td id="imyear"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">年龄：</td>
                             <td id="age"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">婚姻：</td>
                             <td id="matrimony"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">生育：</td>
                             <td id="bear"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">QQ号：</td>
                             <td id="qq"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">微信号：</td>
                             <td id="weixin"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">籍贯：</td>
                             <td id="origin"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">职位：</td>
                             <td id="position"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">目前任职公司：</td>
                             <td id="currently"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">行业：</td>
                             <td id="industry"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">发展意愿：</td>
                             <td id="development"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">最近一次见面：</td>
                             <td id="divided"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">商机类型：</td>
                             <td id="opportunity"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">成单分成比例：</td>
                             <td id="dividedd"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">潜在商机：</td>
                             <td id="potential"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">推荐职位：</td>
                             <td id="recommend"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">商机贡献：</td>
                             <td id="contribution"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">商机结果描述：</td>
                             <td id="describe"></td>
-                        </tr>
-                        <tr>
+
                             <td style="text-align: right;">有效性：</td>
                             <td id="tiveness"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">备注：</td>
                             <td id="note"></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right;">录入时间：</td>
-                            <td id="create_at"></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right;">录入人：</td>
-                            <td id="admin_id"></td>
+
+                            <td style="text-align: right;">录入情况：</td>
+                            <td>
+                                <span id="admin_id"></span>&nbsp;&nbsp;
+                                <span id="create_at"></span>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

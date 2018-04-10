@@ -43,7 +43,11 @@ class LoginController extends Controller{
                 'group_name' => $Manager_M->userGroup($first->group_id)
             ]);
 
-            return redirect('index.jay');
+            if($first->group_id == 1){
+                return redirect('index.jay');
+            }else{
+                return redirect('addInfo.jay');
+            }
 
         }else {
             return view('Customer.login');

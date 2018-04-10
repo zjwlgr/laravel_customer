@@ -43,8 +43,8 @@
                             <span class="glyphicon glyphicon-triangle-left arrow"></span>
                         </a>
                         <ul class="sub">
-                            <li><a href="{{ route('index') }}">系统信息查看</a></li>
                             @if(session()->get('adminData')['group_id'] == 1)
+                            <li><a href="{{ route('index') }}">系统信息查看</a></li>
                             <li><a href="{{ route('addManager') }}">管理员新增</a></li>
                             <li><a href="{{ route('listManager') }}">管理员管理</a></li>
                             @endif

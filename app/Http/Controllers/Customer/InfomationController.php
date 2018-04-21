@@ -100,6 +100,12 @@ class InfomationController extends CommonController
         if($posts['tiveness'] !== null){
             $where[] = ['tiveness', '=', $posts['tiveness']];
         }
+        if($posts['enterprises'] !== null){
+            $where[] = ['enterprises', '=', $posts['enterprises']];
+        }
+        if($posts['importance'] !== null){
+            $where[] = ['importance', '=', $posts['importance']];
+        }
 
         if($this->adminData['group_id'] == 1) {
             if ($posts['admin_id'] !== null) {
@@ -207,6 +213,8 @@ class InfomationController extends CommonController
         $arrays->potential = $customer_ar['potential'][$arrays->potential];
         $arrays->contribution = $customer_ar['contribution'][$arrays->contribution];
         $arrays->tiveness = $customer_ar['tiveness'][$arrays->tiveness];
+        $arrays->enterprises = $customer_ar['enterprises'][$arrays->enterprises];
+        $arrays->importance = $customer_ar['importance'][$arrays->importance];
         $arrays->created_at = date('Y-m-d H:i:s', $arrays->created_at);
         $arrays->admin_id = $admin->uname;
         return response()->json($arrays);

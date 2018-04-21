@@ -109,6 +109,24 @@
                                 </select>
                             </div>
 
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="enterprisesn" name="enterprises" class="search-select">
+                                    <option value="">-企业规模-</option>
+                                    @foreach($customer_ar['enterprises'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['enterprises']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="importancen" name="importance" class="search-select">
+                                    <option value="">-重要性-</option>
+                                    @foreach($customer_ar['importance'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['importance']) selected @endif>{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             @if(session()->get('adminData')['group_id'] == 1)
                             <div class="form-group dropdown" style="margin-top: 10px;">
                                 <select id="admin_idn" name="admin_id" class="search-select">
@@ -291,6 +309,13 @@
 
                             <td style="text-align: right;">有效性：</td>
                             <td id="tiveness"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">企业规模：</td>
+                            <td id="enterprises"></td>
+
+                            <td style="text-align: right;">重要性：</td>
+                            <td id="importance"></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">备注：</td>

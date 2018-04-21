@@ -279,6 +279,8 @@ $(function(){
             $('#potential').text(data.potential == null ? '' : data.potential);
             $('#contribution').text(data.contribution == null ? '' : data.contribution);
             $('#tiveness').text(data.tiveness == null ? '' : data.tiveness);
+            $('#enterprises').text(data.enterprises == null ? '' : data.enterprises);
+            $('#importance').text(data.importance == null ? '' : data.importance);
             $('#divided').text(data.divided);
             $('#dividedd').text(data.dividedd);
             $('#recommend').text(data.recommend);

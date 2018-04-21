@@ -279,6 +279,42 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="enterprises" class="col-sm-2 control-label">企业规模</label>
+                    <div class="col-sm-5">
+                        <div class="dropdown" style="float: left;">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                <span id="text">-选择企业规模-</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
+                                @foreach($customer_ar['enterprises'] as $key => $val)
+                                    <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
+                                @endforeach
+                            </ul>
+                            <input type="hidden" name="infomation[enterprises]" id="enterprises" value="0" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="importance" class="col-sm-2 control-label">重要性</label>
+                    <div class="col-sm-5">
+                        <div class="dropdown" style="float: left;">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                <span id="text">-选择重要性-</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" id="dropdownMenuone" role="menu" aria-labelledby="dropdownMenu1">
+                                @foreach($customer_ar['importance'] as $key => $val)
+                                    <li role="presentation"><a href="#" _i="{{ $key }}">{{ $val }}</a></li>
+                                @endforeach
+                            </ul>
+                            <input type="hidden" name="infomation[importance]" id="importance" value="0" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="describe" class="col-sm-2 control-label">备注</label>
                     <div class="col-sm-5">
                         <textarea class="form-control" id="note" name="infomation[note]" rows="3" placeholder="备注"></textarea>

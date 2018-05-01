@@ -257,6 +257,30 @@ $(function(){
         }
     });
 
+    $('#phone2').bind('blur', function () {
+        var phone = $(this).val();
+        if(phone != '') {
+            if (!phone.match(/^1(3|4|5|6|7|8|9)\d{9}$/)) {
+                art.dialog({
+                    lock: true, opacity: 0.5, content: "请输入正确的手机号！", icon: 'warning', ok: function () {
+                        $('#phone2').focus();
+                    }
+                });
+                return false;
+            } else {
+                $.get('/ajaxPhoneResume.jay', {phone: phone}, function (data) {
+                    if (data.code == 0) {
+                        $('.glyphicon-ok').show().text(data.msg);
+                        $('.glyphicon-remove').hide();
+                    } else if (data.code == 1) {
+                        $('.glyphicon-remove').show().text(data.msg);
+                        $('.glyphicon-ok').hide();
+                    }
+                });
+            }
+        }
+    });
+
     $('.detail_model').bind('click', function () {
         var id = $(this).attr('href');
 
@@ -305,7 +329,7 @@ $(function(){
     laydate.render({
         elem: '#divided'
         //,theme: '#393D49'
-
+//graduation
     });
     laydate.render({
         elem: '#imyear'
@@ -324,6 +348,26 @@ $(function(){
     });
 
 
+
+    laydate.render({
+        elem: '#imyearmd'
+        //,theme: '#393D49'
+        ,done: function(value, date, endDate){
+            var date = new Date();
+            var nowyear = date .getFullYear();
+            var returnyear = value.substr(0,4);
+            $('#age').val(nowyear - parseInt(returnyear));
+            console.log(value); //得到日期生成的值，如：2017-08-18
+            console.log(value.substr(0,4)); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+            console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+        }
+    });
+
+    laydate.render({
+        elem: '#graduation'
+        //,theme: '#393D49'
+//
+    });
 
 });
 

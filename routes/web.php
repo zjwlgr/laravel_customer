@@ -40,3 +40,13 @@ Route::get('/delInfo-{id}.jay', 'Customer\InfomationController@delInfo');
 Route::match(['get', 'post'], '/upManager-{id}.jay', 'Customer\ManagerController@upManager');
 
 Route::get('/delManager-{id}.jay', 'Customer\ManagerController@delManager');
+
+
+// 新加功能路由
+Route::match(['get', 'post'], '/addResume.jay', 'Customer\ResumeController@addResume')->name('addResume');
+Route::get('/ajaxPhoneResume.jay', 'Customer\ResumeController@ajaxPhone');
+
+
+
+
+

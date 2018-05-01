@@ -17,6 +17,6 @@
 <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
 <script src="{{ asset('artDialog/artDialog.js?skin=black') }}"></script>
 @section('otherjs')@show
-<script src="{{ asset('customer/admin_script.js?v=79') }}"></script>
+<script src="{{ asset('customer/admin_script.js?v=711') }}"></script>
 </body>
 </html>

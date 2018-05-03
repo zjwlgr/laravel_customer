@@ -124,6 +124,15 @@ class ResumeController extends CommonController
         foreach ($infometions as $key => $val){
             $admin = DB::table('manager')->select('uname')->find($val->admin_id);
             $infometions[$key]->admin_name = $admin->uname;
+            if($this->adminData['group_id'] == 1 || $this->adminData['id'] == $val->admin_id) {
+                $phone = $val->phone;
+                $email = $val->email;
+            }else{
+                $phone = '***********';
+                $email = '*****@***.***';
+            }
+            $infometions[$key]->phone = $phone;
+            $infometions[$key]->email = $email;
         }
         $customer_ar = config('myconfig.customer');
 
@@ -196,7 +205,16 @@ class ResumeController extends CommonController
                 $arrays->$key = '';
             }
         }
+        if($this->adminData['group_id'] == 1 || $this->adminData['id'] == $arrays->admin_id) {
+            $phone = $arrays->phone;
+            $email = $arrays->email;
+        }else{
+            $phone = '***********';
+            $email = '*****@***.***';
+        }
         $admin = DB::table('manager')->select('uname')->find($arrays->admin_id);
+        $arrays->phone = $phone;
+        $arrays->email = $email;
         $arrays->sex = $customer_ar['sex'][$arrays->sex];
         $arrays->education = $customer_ar['education'][$arrays->education];
         $arrays->industry = $customer_ar['industry'][$arrays->industry];

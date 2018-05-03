@@ -45,7 +45,7 @@ class ResumeController extends CommonController
         }
     }
 
-    public function listInfo(Request $request){
+    public function listResume(Request $request){
         $posts = $request->all();
 
         $where = [];
@@ -95,12 +95,8 @@ class ResumeController extends CommonController
             $where[] = ['importance', '=', $posts['importance']];
         }
 
-        if($this->adminData['group_id'] == 1) {
-            if ($posts['admin_id'] !== null) {
-                $where[] = ['admin_id', '=', $posts['admin_id']];
-            }
-        }else{
-            $where[] = ['admin_id', '=', $this->adminData['id']];
+        if ($posts['admin_id'] !== null) {
+            $where[] = ['admin_id', '=', $posts['admin_id']];
         }
 
 
@@ -112,11 +108,11 @@ class ResumeController extends CommonController
             if($posts['sort'] == 2){//按录入时间将序
                 $field = 'id'; $sort = 'desc';
             }
-            if($posts['sort'] == 3){//按最近一次见面时间升序
-                $field = 'divided'; $sort = 'asc';
+            if($posts['sort'] == 3){//按毕业时间升序
+                $field = 'graduation'; $sort = 'asc';
             }
-            if($posts['sort'] == 4){//按最近一次见面时间将序
-                $field = 'divided'; $sort = 'desc';
+            if($posts['sort'] == 4){//按毕业时间将序
+                $field = 'graduation'; $sort = 'desc';
             }
         }
 
@@ -133,8 +129,8 @@ class ResumeController extends CommonController
 
         $admins = DB::table('manager')->select('id','uname')->get();
 
-        $title = '客户信息管理';
-        return view('Customer.listInfo', [
+        $title = '简历信息管理';
+        return view('Customer.listResume', [
             'title' => $title,
             'infometions' => $infometions,
             'customer_ar' => $customer_ar,
@@ -143,26 +139,26 @@ class ResumeController extends CommonController
         ]);
     }
 
-    public function upInfo(Request $request, $id){
+    public function upResume(Request $request, $id){
         if($request->isMethod('POST')){
             $posts = $request->input('infomation');
             if($this->model->find($id)->update($posts)){
-                return redirect('listInfo.jay')->with('success', '客户信息编辑成功');
+                return redirect('listResume.jay')->with('success', '简历信息编辑成功');
             }else{
                 return redirect()->back();
             }
         }else{
             $one = $this->model->find($id);
             $customer_ar = config('myconfig.customer');
-            return view('Customer.upInfo', [
-                'title' => '客户信息编辑',
+            return view('Customer.upResume', [
+                'title' => '简历信息编辑',
                 'one' => $one,
                 'customer_ar' => $customer_ar
             ]);
         }
     }
 
-    public function delInfo($id){
+    public function delResume($id){
         $num = $this->model->destroy($id);
         if(!empty($num)){
             return redirect()->back()->with('success', '删除信息成功');
@@ -184,7 +180,7 @@ class ResumeController extends CommonController
     public function ajaxDetail(Request $request){
         $id = $request->input('id');
         $customer_ar = config('myconfig.customer');
-        $nodes = DB::table('infometion')->where('id', $id)->get()->toArray();
+        $nodes = DB::table('resume')->where('id', $id)->get()->toArray();
         $arrays = $nodes[0];
         foreach ($arrays as $key => $val){
             if($val == null){
@@ -193,19 +189,23 @@ class ResumeController extends CommonController
         }
         $admin = DB::table('manager')->select('uname')->find($arrays->admin_id);
         $arrays->sex = $customer_ar['sex'][$arrays->sex];
-        $arrays->matrimony = $customer_ar['matrimony'][$arrays->matrimony];
-        $arrays->bear = $customer_ar['bear'][$arrays->bear];
+        $arrays->education = $customer_ar['education'][$arrays->education];
         $arrays->industry = $customer_ar['industry'][$arrays->industry];
-        $arrays->development = $customer_ar['development'][$arrays->development];
-        $arrays->opportunity = $customer_ar['opportunity'][$arrays->opportunity];
-        $arrays->potential = $customer_ar['potential'][$arrays->potential];
-        $arrays->contribution = $customer_ar['contribution'][$arrays->contribution];
         $arrays->tiveness = $customer_ar['tiveness'][$arrays->tiveness];
-        $arrays->enterprises = $customer_ar['enterprises'][$arrays->enterprises];
-        $arrays->importance = $customer_ar['importance'][$arrays->importance];
         $arrays->created_at = date('Y-m-d H:i:s', $arrays->created_at);
         $arrays->admin_id = $admin->uname;
+        $arrays->note = $this->replace_y($arrays->note);
         return response()->json($arrays);
+    }
+
+    //替换空格与回车
+    public function replace_y($note){
+        $note = str_replace(' ','&nbsp;',$note);
+        $note = str_replace("\r\n","<br>",$note);
+        $note = str_replace("\n\r","<br>",$note);
+        $note = str_replace("\n","<br>",$note);
+        $note = str_replace("\r","<br>",$note);
+        return $note;
     }
 
 

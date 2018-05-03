@@ -51,8 +51,8 @@
                             <li><a href="{{ route('addInfo') }}">客户信息新增</a></li>
                             <li><a href="{{ route('listInfo') }}">客户信息管理</a></li>
 
-                                <li><a href="{{ route('addResume') }}">简历信息新增</a></li>
-                                <li><a href="#">简历信息管理</a></li>
+                            <li><a href="{{ route('addResume') }}">简历信息新增</a></li>
+                            <li><a href="{{ route('listResume') }}">简历信息管理</a></li>
                         </ul>
                     </li>
                 </ul>

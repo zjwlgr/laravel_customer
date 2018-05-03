@@ -281,6 +281,7 @@ $(function(){
         }
     });
 
+    //客户信息详情
     $('.detail_model').bind('click', function () {
         var id = $(this).attr('href');
 
@@ -320,6 +321,41 @@ $(function(){
         return false;
     });
 
+
+    //简历信息详情
+    $('.detail_model_resume').bind('click', function () {
+        var id = $(this).attr('href');
+
+        $.get('/ajaxDetail_resume.jay',{id:id},function (data) {
+            $('#name').text(data.name);
+            $('#phone').text(data.phone);
+            $('#sex').text(data.sex);
+            $('#imyearmd').text(data.imyearmd);
+            $('#age').text(data.age);
+            $('#email').text(data.email);
+            $('#education').text(data.education == null ? '' : data.education);
+            $('#graduation').text(data.graduation);
+            $('#qq').text(data.qq);
+            $('#weixin').text(data.weixin);
+            $('#position').text(data.position);
+            $('#currently').text(data.currently);
+            $('#industry').text(data.industry == null ? '' : data.industry);
+            $('#tiveness').text(data.tiveness == null ? '' : data.tiveness);
+            $('#divided').text(data.divided);
+            $('#dividedd').text(data.dividedd);
+            $('#note').html(data.note);
+            $('#updatefield').text(data.updatefield);
+            $('#create_at').text(data.created_at);
+            $('#admin_id').text(data.admin_id);
+
+            $('#myModal_resume').modal('show')
+        });
+
+        return false;
+    });
+
+
+    //操作成功后的提示框
     if($('#model_success').length > 0){
         setTimeout(function () {
             $('#model_success').children('button').click();

@@ -327,6 +327,7 @@ $(function(){
         var id = $(this).attr('href');
 
         $.get('/ajaxDetail_resume.jay',{id:id},function (data) {
+            $('#resume_id').val(data.id);
             $('#name').text(data.name);
             $('#phone').text(data.phone);
             $('#sex').text(data.sex);
@@ -344,7 +345,7 @@ $(function(){
             $('#divided').text(data.divided);
             $('#dividedd').text(data.dividedd);
             $('#note').html(data.note);
-            $('#updatefield').text(data.updatefield);
+            $('#updatefield').val(data.updatefield);
             $('#create_at').text(data.created_at);
             $('#admin_id').text(data.admin_id);
 
@@ -352,6 +353,15 @@ $(function(){
         });
 
         return false;
+    });
+
+    //ajax 更新简历联系记录字段
+    $("#updatefield").blur(function () {
+        var id = $("#resume_id").val();
+        var content = $(this).val();
+        $.post("/ajaxUpdateField.jay",{id:id, content:content, _token:$('meta[name="csrf-token"]').attr('content')},function (data) {
+            //alert(data);
+        });
     });
 
 

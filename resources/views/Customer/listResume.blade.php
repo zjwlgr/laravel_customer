@@ -165,6 +165,7 @@
                 </div>
                 <div class="modal-body" style="padding-bottom: 0px;">
 
+                    <input type="hidden" id="resume_id" value="">
                     <table class="table table-bordered table-hover">
                         <tbody>
                         <tr>

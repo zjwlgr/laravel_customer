@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ env('APP_NAME') }} - @yield('title')</title>
     <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('customer/admin_style.css?v=2') }}" rel="stylesheet">
@@ -17,6 +18,6 @@
 <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
 <script src="{{ asset('artDialog/artDialog.js?skin=black') }}"></script>
 @section('otherjs')@show
-<script src="{{ asset('customer/admin_script.js?v=711') }}"></script>
+<script src="{{ asset('customer/admin_script.js?v=717d') }}"></script>
 </body>
 </html>

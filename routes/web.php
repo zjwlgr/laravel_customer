@@ -45,6 +45,7 @@ Route::get('/delManager-{id}.jay', 'Customer\ManagerController@delManager');
 // 新加功能路由
 Route::match(['get', 'post'], '/addResume.jay', 'Customer\ResumeController@addResume')->name('addResume');
 Route::get('/ajaxPhoneResume.jay', 'Customer\ResumeController@ajaxPhone');
+Route::post('/ajaxUpdateField.jay', 'Customer\ResumeController@ajaxUpdateField');
 Route::get('/listResume.jay', 'Customer\ResumeController@listResume')->name('listResume');
 Route::match(['get', 'post'], '/upResume-{id}.jay', 'Customer\ResumeController@upResume');
 Route::get('/delResume-{id}.jay', 'Customer\ResumeController@delResume');

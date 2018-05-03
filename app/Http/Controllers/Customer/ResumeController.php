@@ -177,6 +177,15 @@ class ResumeController extends CommonController
         }
     }
 
+    //更新联系记录字段 ajax
+    public function ajaxUpdateField(Request $request){
+        $id = $request->input('id');
+        $content = $request->input('content');
+        $posts['updatefield'] = $content;
+        echo $this->model->find($id)->update($posts);
+        //echo $id.'--'.$content;
+    }
+
     public function ajaxDetail(Request $request){
         $id = $request->input('id');
         $customer_ar = config('myconfig.customer');

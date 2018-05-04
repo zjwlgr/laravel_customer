@@ -27,6 +27,9 @@ class ResumeController extends CommonController
             }
 
             $posts['admin_id'] = $this->adminData['id'];
+            if($posts['graduation'] !== null) {
+                $posts['jobyear'] = date('Y') - date('Y', strtotime($posts['graduation']));
+            }
             if($this->model->create($posts)){
                 return redirect('listResume.jay')->with('success', '简历信息新增成功');
             }else{
@@ -55,48 +58,43 @@ class ResumeController extends CommonController
         if($posts['phone'] !== null){
             $where[] = ['phone', 'like', '%'.$posts['phone'].'%'];
         }
-        if($posts['imyear'] !== null){
-            $where[] = ['imyear', 'like', '%'.$posts['imyear'].'%'];
+        if($posts['imyearmd'] !== null){
+            $where[] = ['imyearmd', 'like', '%'.$posts['imyearmd'].'%'];
         }
-        if($posts['recommend'] !== null){
-            $where[] = ['recommend', 'like', '%'.$posts['recommend'].'%'];
+        if($posts['position'] !== null){
+            $where[] = ['position', 'like', '%'.$posts['position'].'%'];
         }
         if($posts['sex'] !== null){
             $where[] = ['sex', '=', $posts['sex']];
         }
-        if($posts['matrimony'] !== null){
-            $where[] = ['matrimony', '=', $posts['matrimony']];
+        if($posts['note'] !== null){
+            $where[] = ['note', 'like', '%'.$posts['note'].'%'];
         }
-        if($posts['bear'] !== null){
-            $where[] = ['bear', '=', $posts['bear']];
+        if($posts['education'] !== null){
+            $where[] = ['education', '=', $posts['education']];
         }
         if($posts['industry'] !== null){
             $where[] = ['industry', '=', $posts['industry']];
         }
-        if($posts['development'] !== null){
-            $where[] = ['development', '=', $posts['development']];
-        }
-        if($posts['opportunity'] !== null){
-            $where[] = ['opportunity', '=', $posts['opportunity']];
-        }
-        if($posts['potential'] !== null){
-            $where[] = ['potential', '=', $posts['potential']];
-        }
-        if($posts['contribution'] !== null){
-            $where[] = ['contribution', '=', $posts['contribution']];
-        }
         if($posts['tiveness'] !== null){
             $where[] = ['tiveness', '=', $posts['tiveness']];
-        }
-        if($posts['enterprises'] !== null){
-            $where[] = ['enterprises', '=', $posts['enterprises']];
-        }
-        if($posts['importance'] !== null){
-            $where[] = ['importance', '=', $posts['importance']];
         }
 
         if ($posts['admin_id'] !== null) {
             $where[] = ['admin_id', '=', $posts['admin_id']];
+        }
+
+        if ($posts['graduation_s'] !== null && $posts['graduation_e'] !== null) {
+            $where[] = ['jobyear', '>=', $posts['graduation_s']];
+            $where[] = ['jobyear', '<=', $posts['graduation_e']];
+        }
+
+        if ($posts['graduation_s'] !== null && $posts['graduation_e'] == null) {
+            $where[] = ['jobyear', '>=', $posts['graduation_s']];
+        }
+
+        if ($posts['graduation_s'] == null && $posts['graduation_e'] !== null) {
+            $where[] = ['jobyear', '<=', $posts['graduation_e']];
         }
 
 
@@ -151,6 +149,9 @@ class ResumeController extends CommonController
     public function upResume(Request $request, $id){
         if($request->isMethod('POST')){
             $posts = $request->input('infomation');
+            if($posts['graduation'] !== null) {
+                $posts['jobyear'] = date('Y') - date('Y', strtotime($posts['graduation']));
+            }
             if($this->model->find($id)->update($posts)){
                 return redirect('listResume.jay')->with('success', '简历信息编辑成功');
             }else{

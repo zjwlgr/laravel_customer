@@ -21,10 +21,29 @@
                                 <input type="text" name="phone" style="border-color: #999;" class="form-control input-sm" id="phonen" value="{{ $one['phone'] }}" placeholder="手机号">
                             </div>
                             <div class="form-group">
-                                <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="imyear" value="{{ $one['imyear'] }}" id="imyearn" placeholder="出生年">
+                                <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="imyearmd" value="{{ $one['imyearmd'] }}" id="imyearmdn" placeholder="出生年">
                             </div>
 
-                            <div class="form-group dropdown">
+                            <div class="form-group">
+                                <input type="text" name="position" style="border-color: #999;" class="form-control input-sm" id="positionn" value="{{ $one['position'] }}" placeholder="职位">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="note" style="border-color: #999;" class="form-control input-sm" id="noten" value="{{ $one['note'] }}" placeholder="大文本框检索">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                                <div class="input-group">
+                                    <input type="text" style="width: 70px; border-color: #999;" class="form-control input-sm" name="graduation_s" value="{{ $one['graduation_s'] }}" id="graduation_s" placeholder="工作年限">
+                                    <div class="input-group-addon">至</div>
+                                    <input type="text" style="width: 70px; border-color: #999;" class="form-control input-sm" name="graduation_e" value="{{ $one['graduation_e'] }}" id="graduation_e" placeholder="工作年限">
+                                </div>
+                            </div>
+                            <div class="form-group" style="width: 40px;">
+                            </div>
+
+                            <div class="form-group dropdown" style="margin-top: 10px;">
                                 <select id="sexn" name="sex" class="search-select">
                                     <option value="">-性别-</option>
                                     @foreach($customer_ar['sex'] as $key => $val)
@@ -33,16 +52,16 @@
                                 </select>
                             </div>
 
-                            <div class="form-group dropdown">
-                                <select id="bearn" name="bear" class="search-select">
-                                    <option value="">-生育-</option>
-                                    @foreach($customer_ar['bear'] as $key => $val)
-                                        <option value="{{ $key }}" @if($key == $one['bear']) selected @endif>{{ $val }}</option>
+                            <div class="form-group dropdown" style="margin-top: 10px;">
+                                <select id="educationn" name="education" class="search-select">
+                                    <option value="">-学历-</option>
+                                    @foreach($customer_ar['education'] as $key => $val)
+                                        <option value="{{ $key }}" @if($key == $one['education']) selected @endif>{{ $val }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
-                            <div class="form-group dropdown">
+                            <div class="form-group dropdown" style="margin-top: 10px;">
                                 <select id="industryn" name="industry" class="search-select">
                                     <option value="">-行业-</option>
                                     @foreach($customer_ar['industry'] as $key => $val)
@@ -50,9 +69,6 @@
                                     @endforeach
                                 </select>
                             </div>
-
-
-
 
                             <div class="form-group dropdown" style="margin-top: 10px;">
                                 <select id="tivenessn" name="tiveness" class="search-select">
@@ -80,8 +96,8 @@
                                     <option value="">-排序-</option>
                                     <option value="1" @if(1 == $one['sort']) selected @endif>按录入时间升序</option>
                                     <option value="2" @if(2 == $one['sort']) selected @endif>按录入时间将序</option>
-                                    <option value="3" @if(3 == $one['sort']) selected @endif>按最近一次见面时间升序</option>
-                                    <option value="4" @if(4 == $one['sort']) selected @endif>按最近一次见面时间将序</option>
+                                    <option value="3" @if(3 == $one['sort']) selected @endif>按毕业时间升序</option>
+                                    <option value="4" @if(4 == $one['sort']) selected @endif>按毕业时间将序</option>
                                 </select>
                             </div>
 
@@ -139,15 +155,19 @@
             </table>
 
             {{ $infometions->appends([
-            'name' => $one['name'],
-            'phone' => $one['phone'],
-            'imyear' => $one['imyear'],
-            'sex' => $one['sex'],
-            'bear' => $one['bear'],
-            'industry' => $one['industry'],
-            'tiveness' => $one['tiveness'],
-            'admin_id' => $one['admin_id'],
-            'sort' => $one['sort']
+            'name'         => $one['name'],
+            'phone'        => $one['phone'],
+            'imyearmd'     => $one['imyearmd'],
+            'position'     => $one['position'],
+            'sex'          => $one['sex'],
+            'note'         => $one['note'],
+            'education'    => $one['education'],
+            'graduation_s' => $one['graduation_s'],
+            'graduation_e' => $one['graduation_e'],
+            'industry'     => $one['industry'],
+            'tiveness'     => $one['tiveness'],
+            'admin_id'     => $one['admin_id'],
+            'sort'         => $one['sort']
             ])->links() }}
 
         </div>

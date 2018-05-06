@@ -64,6 +64,9 @@ class ResumeController extends CommonController
         if($posts['position'] !== null){
             $where[] = ['position', 'like', '%'.$posts['position'].'%'];
         }
+        if($posts['currently'] !== null){
+            $where[] = ['currently', 'like', '%'.$posts['currently'].'%'];
+        }
         if($posts['sex'] !== null){
             $where[] = ['sex', '=', $posts['sex']];
         }
@@ -98,7 +101,7 @@ class ResumeController extends CommonController
         }
 
 
-        $field = 'id'; $sort = 'asc';
+        $field = 'id'; $sort = 'desc';
         if($posts['sort'] !== null){
             if($posts['sort'] == 1){//按录入时间升序
                 $field = 'id'; $sort = 'asc';

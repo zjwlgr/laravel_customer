@@ -191,7 +191,7 @@
                             <a href="{{ url('upInfo-'.$manager->id.'.jay') }}">编辑</a>
                             @if(session()->get('adminData')['group_id'] == 1)|
                             <a href="{{ url('delInfo-'.$manager->id.'.jay') }}" class="delete" >删除</a>
-                                @endif
+                            @endif
                         </td>
                     </tr>
                 @endforeach

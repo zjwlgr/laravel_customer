@@ -53,6 +53,9 @@
 
                             <li><a href="{{ route('addResume') }}">简历信息新增</a></li>
                             <li><a href="{{ route('listResume') }}">简历信息管理</a></li>
+
+                            <li><a href="{{ route('addCompany') }}">公司信息新增</a></li>
+                            <li><a href="{{ route('listCompany') }}">公司信息管理</a></li>
                         </ul>
                     </li>
                 </ul>

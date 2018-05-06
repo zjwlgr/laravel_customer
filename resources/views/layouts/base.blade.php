@@ -18,6 +18,6 @@
 <script src="{{ asset('bootstrap/js/bootstrap.js') }}"></script>
 <script src="{{ asset('artDialog/artDialog.js?skin=black') }}"></script>
 @section('otherjs')@show
-<script src="{{ asset('customer/admin_script.js?v=717d') }}"></script>
+<script src="{{ asset('customer/admin_script.js?v=719') }}"></script>
 </body>
 </html>

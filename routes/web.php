@@ -51,4 +51,8 @@ Route::match(['get', 'post'], '/upResume-{id}.jay', 'Customer\ResumeController@u
 Route::get('/delResume-{id}.jay', 'Customer\ResumeController@delResume');
 Route::get('/ajaxDetail_resume.jay', 'Customer\ResumeController@ajaxDetail');
 
-
+Route::match(['get', 'post'], '/addCompany.jay', 'Customer\CompanyController@addCompany')->name('addCompany');
+Route::get('/listCompany.jay', 'Customer\CompanyController@listCompany')->name('listCompany');
+Route::match(['get', 'post'], '/upCompany-{id}.jay', 'Customer\CompanyController@upCompany');
+Route::get('/delCompany-{id}.jay', 'Customer\CompanyController@delCompany');
+Route::get('/ajaxDetail_company.jay', 'Customer\CompanyController@ajaxDetail');

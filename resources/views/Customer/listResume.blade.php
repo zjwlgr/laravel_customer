@@ -18,14 +18,18 @@
                                 <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="name" value="{{ $one['name'] }}" id="namen" placeholder="姓名">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="phone" style="border-color: #999;" class="form-control input-sm" id="phonen" value="{{ $one['phone'] }}" placeholder="手机号">
+                                <input type="text" name="phone" style="border-color: #999; width: 130px;" class="form-control input-sm" id="phonen" value="{{ $one['phone'] }}" placeholder="手机号">
                             </div>
                             <div class="form-group">
                                 <input type="text" style="width: 100px; border-color: #999;" class="form-control input-sm" name="imyearmd" value="{{ $one['imyearmd'] }}" id="imyearmdn" placeholder="出生年">
                             </div>
 
                             <div class="form-group">
-                                <input type="text" name="position" style="border-color: #999;" class="form-control input-sm" id="positionn" value="{{ $one['position'] }}" placeholder="职位">
+                                <input type="text" name="position" style="border-color: #999; width: 130px;" class="form-control input-sm" id="positionn" value="{{ $one['position'] }}" placeholder="职位">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="currently" style="border-color: #999;" class="form-control input-sm" id="currentlyn" value="{{ $one['currently'] }}" placeholder="目前任职公司">
                             </div>
 
                             <div class="form-group">
@@ -39,8 +43,6 @@
                                     <div class="input-group-addon">至</div>
                                     <input type="text" style="width: 70px; border-color: #999;" class="form-control input-sm" name="graduation_e" value="{{ $one['graduation_e'] }}" id="graduation_e" placeholder="工作年限">
                                 </div>
-                            </div>
-                            <div class="form-group" style="width: 40px;">
                             </div>
 
                             <div class="form-group dropdown" style="margin-top: 10px;">
@@ -159,6 +161,7 @@
             'phone'        => $one['phone'],
             'imyearmd'     => $one['imyearmd'],
             'position'     => $one['position'],
+            'currently'     => $one['currently'],
             'sex'          => $one['sex'],
             'note'         => $one['note'],
             'education'    => $one['education'],

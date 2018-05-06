@@ -351,9 +351,35 @@ $(function(){
 
             $('#myModal_resume').modal('show')
         });
-
         return false;
     });
+
+
+    //公司信息详情
+    $('.detail_model_company').bind('click', function () {
+        var id = $(this).attr('href');
+
+        $.get('/ajaxDetail_company.jay',{id:id},function (data) {
+            $('#name').text(data.name);
+            $('#industry').text(data.industry == null ? '' : data.industry);
+            $('#PersonnelScale').text(data.PersonnelScale == null ? '' : data.PersonnelScale);
+            $('#Importance').text(data.Importance == null ? '' : data.Importance);
+            $('#tctype').text(data.tctype == null ? '' : data.tctype);
+            $('#opportunitys').text(data.opportunitys);
+            $('#phone').text(data.phone);
+            $('#qq').text(data.qq);
+            $('#weixin').text(data.weixin);
+            $('#position').text(data.position);
+            $('#currently').text(data.currently);
+            $('#statuss').text(data.statuss == null ? '' : data.statuss);
+            $('#note').html(data.note);
+            $('#create_at').text(data.created_at);
+            $('#admin_id').text(data.admin_id);
+            $('#myModal_company').modal('show')
+        });
+        return false;
+    });
+
 
     //ajax 更新简历联系记录字段
     $("#updatefield").blur(function () {

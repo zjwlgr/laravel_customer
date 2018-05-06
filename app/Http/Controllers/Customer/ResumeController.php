@@ -212,13 +212,19 @@ class ResumeController extends CommonController
         if($this->adminData['group_id'] == 1 || $this->adminData['id'] == $arrays->admin_id) {
             $phone = $arrays->phone;
             $email = $arrays->email;
+            $qq = $arrays->qq;
+            $weixin = $arrays->weixin;
         }else{
             $phone = '***********';
             $email = '*****@***.***';
+            $qq = '***********';
+            $weixin = '***********';
         }
         $admin = DB::table('manager')->select('uname')->find($arrays->admin_id);
         $arrays->phone = $phone;
         $arrays->email = $email;
+        $arrays->weixin = $weixin;
+        $arrays->qq = $qq;
         $arrays->sex = $customer_ar['sex'][$arrays->sex];
         $arrays->education = $customer_ar['education'][$arrays->education];
         $arrays->industry = $customer_ar['industry'][$arrays->industry];

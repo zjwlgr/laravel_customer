@@ -152,7 +152,7 @@ class CompanyController extends CommonController
     public function ajaxDetail(Request $request){
         $id = $request->input('id');
         $customer_ar = config('myconfig.customer');
-        $nodes = DB::table('Company')->where('id', $id)->get()->toArray();
+        $nodes = DB::table('company')->where('id', $id)->get()->toArray();
         $arrays = $nodes[0];
         foreach ($arrays as $key => $val){
             if($val == null){

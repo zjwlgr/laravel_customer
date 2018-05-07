@@ -103,7 +103,7 @@
                 <div class="form-group">
                     <label for="opportunitys" class="col-sm-2 control-label">商机线索人</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" required name="infomation[opportunitys]" id="opportunitys" placeholder="商机线索人">
+                        <input type="text" class="form-control" name="infomation[opportunitys]" id="opportunitys" placeholder="商机线索人">
                     </div>
                 </div>
 

@@ -28,6 +28,10 @@
                                 <input type="text" style=" border-color: #999;" class="form-control input-sm" name="recommend" value="{{ $one['recommend'] }}" id="recommendn" placeholder="推荐职位">
                             </div>
 
+                            <div class="form-group">
+                                <input type="text" style=" border-color: #999;" class="form-control input-sm" name="position" value="{{ $one['position'] }}" id="positionn" placeholder="职位">
+                            </div>
+
                             <div class="form-group dropdown">
                                 <select id="sexn" name="sex" class="search-select">
                                     <option value="">-性别-</option>
@@ -207,6 +211,7 @@
             'matrimony' => $one['matrimony'],
             'bear' => $one['bear'],
             'industry' => $one['industry'],
+            'position' => $one['position'],
             'development' => $one['development'],
             'opportunity' => $one['opportunity'],
             'potential' => $one['potential'],
